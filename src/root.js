@@ -7,9 +7,9 @@ import configureStore from './store/store';
 const store = configureStore();
 
 // This root component can be used to wrap any component. In this project, we have separated this to wrap while testing the components.
-export default function Root(props) {
+export default function Root({ children, initialState = {} }) {
   return (
-    <Provider store={store}>
-      {props.children}
+    <Provider store={configureStore(initialState)}>
+      {children}
     </Provider>)
 }

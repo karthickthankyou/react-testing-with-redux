@@ -8,19 +8,9 @@ import { shallow } from 'enzyme';
 let wrapped;
 
 beforeEach(() => {
-  wrapped = shallow(<App />);
-})
-
-it('does not crash', () => {
-  // This basic rendering makes sure that the component does not crash.
-
-  // The below document is provided by JSDOM not the real browser.
-  const div = document.createElement('div');
-
-  ReactDOM.render(<App />, div);
-
-  // Clean up. This improves the performance as we unmount any unused components objects dangling around.
-  ReactDOM.unmountComponentAtNode(div);
+  wrapped = shallow(
+    <App />
+  )
 })
 
 it('shows a comment box', () => {

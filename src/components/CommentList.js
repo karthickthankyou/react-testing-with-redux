@@ -1,12 +1,22 @@
 
 import React from 'react'
+import { connect } from 'react-redux'
 
-const CommentList = () => {
+const CommentList = (props) => {
   return (
     <div>
-      This is Comment List.
+      Comments:
+      {
+        props.comments.map((comment, index) => (
+          <li key={index}>{comment}</li>
+        ))
+      }
     </div>
   )
 }
 
-export default CommentList
+const mapStateToProps = (state) => ({
+  comments: state.comments
+})
+
+export default connect(mapStateToProps)(CommentList)
