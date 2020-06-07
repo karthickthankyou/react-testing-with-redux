@@ -1,16 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { saveComment } from '../store/actions'
 
 class CommentBox extends Component {
   state = {
     comment: ''
   }
-
   commentChange = (e) => {
     this.setState({ comment: e.target.value });
   }
 
   commentSubmit = (e) => {
     e.preventDefault();
+    this.props.saveComment(this.state.comment);
     this.setState({ comment: '' });
   }
 
@@ -25,4 +27,12 @@ class CommentBox extends Component {
   }
 }
 
-export default CommentBox
+const mapStateToProps = (state) => ({
+  comments: state.comments,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  saveComment: (comment) => dispatch(saveComment(comment))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentBox)
