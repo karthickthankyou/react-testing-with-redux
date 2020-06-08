@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { saveComment } from '../store/actions'
+import { saveComment, fetchComments } from '../store/actions'
 
 class CommentBox extends Component {
   state = {
@@ -18,11 +18,14 @@ class CommentBox extends Component {
 
   render() {
     return (
-      <form onSubmit={this.commentSubmit}>
-        <h4>Add a comment</h4>
-        <textarea value={this.state.comment} onChange={this.commentChange} />
-        <button>Submit</button>
-      </form>
+      <div>
+        <form onSubmit={this.commentSubmit}>
+          <h4>Add a comment</h4>
+          <textarea value={this.state.comment} onChange={this.commentChange} />
+          <button>Submit</button>
+        </form>
+        <button onClick={this.props.fetchComments}>Fetch Comments</button>
+      </div>
     )
   }
 }
@@ -32,7 +35,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  saveComment: (comment) => dispatch(saveComment(comment))
+  saveComment: (comment) => dispatch(saveComment(comment)),
+  fetchComments: () => dispatch(fetchComments())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(CommentBox)

@@ -7,7 +7,7 @@ let wrapped;
 
 
 beforeEach(() => {
-
+  
   wrapped = mount(
     <Root>
       <CommentBox />
